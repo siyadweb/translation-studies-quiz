@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translation Studies - 40 MCQ Quiz</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0;color:#172033}
+.container{max-width:900px;margin:auto;padding:24px}
+header{background:#243b64;color:white;padding:24px;border-radius:14px;margin-bottom:20px}
+h1{margin:0 0 8px;font-size:28px}.subtitle{opacity:.9}
+.question{background:white;border-radius:12px;padding:18px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.question h3{margin-top:0;font-size:17px;line-height:1.5}
+.option{display:block;width:100%;box-sizing:border-box;text-align:left;padding:12px 14px;margin:8px 0;border:1px solid #ccd5e2;border-radius:8px;background:white;cursor:pointer;font-size:15px}
+.option:hover{background:#eef4ff}.option.correct{background:#b9f6c5!important;border-color:#2e9b4f;color:#145c29}
+.option.wrong{background:#ffc0c0!important;border-color:#d33;color:#7a1111}.option:disabled{cursor:default}
+.feedback{font-weight:bold;margin-top:10px;min-height:20px}.correct-text{color:#188038}.wrong-text{color:#c5221f}
+#result{display:none;background:white;padding:20px;border-radius:12px;margin:20px 0;font-size:20px;font-weight:bold}
+.reset{background:#243b64;color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer;font-size:16px;margin-bottom:30px}
+.reset:hover{background:#172a4b}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Translation Studies – 40 MCQ Quiz</h1>
+<div class="subtitle">Select the correct answer. Correct answers turn green and wrong answers turn red.</div>
+</header>
+<div id="result"></div>
+<div id="quiz"></div>
+<button class="reset" onclick="resetQuiz()">Reset Quiz</button>
+</div>
+<script>
+const questions=[
+["Which Roman translator translated Homer's Odyssey into Latin?",["Cicero","Horace","Livius Andronicus","Jerome"],2],
+["The Septuagint is commonly abbreviated as:",["LXX","VUL","KJV","RSV"],0],
+["The Latin Vulgate is principally associated with:",["Augustine","Jerome","Erasmus","Luther"],1],
+["The King James Version of the Bible was published in:",["1453","1517","1611","1660"],2],
+["Which translation approach seeks to reproduce the source text closely at the level of wording and structure?",["Free translation","Literal translation","Adaptation","Transcreation"],1],
+["CAT in translation technology stands for:",["Computer-Assisted Translation","Computerized Automatic Translation","Computer-Aided Textualization","Computerized Author Translation"],0],
+["Translation Memory (TM) stores:",["Only dictionaries","Previously translated segments","Only source-language texts","Machine-learning algorithms exclusively"],1],
+["NMT stands for:",["Neural Machine Translation","Natural Meaning Translation","Numerical Machine Translation","Neural Meaning Transfer"],0],
+["AI-based translation differs from traditional rule-based MT because AI systems can:",["Learn patterns from large datasets","Translate without language data","Eliminate all translation errors","Avoid contextual interpretation completely"],0],
+["MTPE stands for:",["Machine Translation Post-Editing","Machine Textual Processing and Editing","Manual Translation Post-Evaluation","Machine Terminology Processing Engine"],0],
+["A postmodern understanding of translation generally views the translator as:",["An entirely invisible mechanical agent","An active participant in meaning-making","A dictionary operator","An irrelevant intermediary"],1],
+["Technical translation primarily requires:",["Precision and terminological consistency","Maximum ambiguity","Extensive metaphor","Deliberate stylistic ornamentation"],0],
+["A translator working with a scientific text should pay particular attention to:",["Terminology","Rhyme","Character development","Narrative voice only"],0],
+["Free translation allows the translator greater freedom to:",["Reformulate the source message","Preserve every source word","Avoid target-language conventions","Maintain source syntax exactly"],0],
+["Adaptation in translation involves:",["Modifying a source text to suit a different cultural or communicative context","Reproducing every word exactly","Translating only technical terms","Removing all cultural references"],0],
+["The major source language for early Roman literary translation was:",["Hebrew","Greek","Sanskrit","Arabic"],1],
+["Cicero discussed his translation principles in:",["De Optimo Genere Oratorum","Ars Poetica","Confessions","The Republic"],0],
+["Jerome's major Bible translation is known as the:",["Septuagint","Vulgate","Geneva Bible","King James Version"],1],
+["William Tyndale is especially associated with:",["German Bible translation","English Bible translation","Latin Bible translation","Greek Bible translation"],1],
+["The primary purpose of CAT tools is to:",["Replace all translators","Assist human translators","Write literary criticism","Create source texts"],1],
+["The process of correcting and improving machine-generated translation is called:",["Adaptation","Post-editing","Transcreation","Back-translation"],1],
+["Which of the following is a potential problem with AI-generated translation?",["It can never process language","It may misunderstand cultural context","It cannot produce fluent text","It cannot translate common words"],1],
+["Which quality is especially important in scientific and technical writing?",["Subjectivity","Precision","Metaphorical complexity","Ambiguity"],1],
+["Faithful translation primarily seeks to preserve:",["The contextual meaning and intention of the source","The exact number of words","Only punctuation","Only syntax"],0],
+["Semantic translation emphasises:",["Meaning and contextual nuances","Target-culture advertising","Word count","Punctuation"],0],
+["Which approach in translation is most likely to prioritise the target reader's response?",["Literal","Word-for-word","Communicative","Faithful"],2],
+["Which approach modifies a source text to suit a different cultural context?",["Adaptation","Literal translation","Word-for-word translation","Faithful translation"],0],
+["Restating an idea in different words is called:",["Adaptation","Paraphrase","Transcreation","Transcription"],1],
+["Which approach combines translation with creative rewriting?",["Literal translation","Transcreation","Faithful translation","Word-for-word translation"],1],
+["“Make a decision” is an example of:",["Register","Collocation","Code-switching","Interference"],1],
+["Which term refers to translation carried out with the help of computer-based tools?",["Computer-Assisted Translation","Machine Translation","Back-translation","Adaptation"],0],
+["Which of the following is associated with early Roman translation?",["Greek","Arabic","Chinese","Persian"],0],
+["Which translation method gives priority to the source text's words and grammatical structure?",["Word-for-word translation","Communicative translation","Free translation","Transcreation"],0],
+["Which translation method gives priority to meaning and contextual nuances?",["Semantic translation","Word-for-word translation","Literal translation","Free translation"],0],
+["Which translation approach gives particular importance to the response of the target reader?",["Communicative translation","Literal translation","Word-for-word translation","Faithful translation"],0],
+["Which process involves revising machine-generated translation?",["Post-editing","Adaptation","Transcription","Collocation"],0],
+["Which technology stores previously translated segments for future reuse?",["Translation Memory","Neural Machine Translation","Transcreation","Back-translation"],0],
+["Which type of translation requires precision and terminological consistency?",["Scientific and technical translation","Free translation","Literary adaptation","Transcreation"],0],
+["Which concept refers to the creative rewriting of a text along with translation?",["Transcreation","Literal translation","Word-for-word translation","Faithful translation"],0],
+["Which factor is particularly important when translating a text across cultures?",["Cultural context","Word count alone","Punctuation alone","Source-text length"],0]
+];
+
+let score=0,answered=0;
+const total=questions.length;
+const quiz=document.getElementById("quiz");
+
+questions.forEach((q,i)=>{
+ const section=document.createElement("section");
+ section.className="question";
+ section.innerHTML=`<h3>${i+1}. ${q[0]}</h3>`;
+ q[1].forEach((option,index)=>{
+   const btn=document.createElement("button");
+   btn.className="option";
+   btn.textContent=String.fromCharCode(65+index)+". "+option;
+   btn.addEventListener("click",()=>answer(section,index,q[2]));
+   section.appendChild(btn);
+ });
+ const feedback=document.createElement("div");
+ feedback.className="feedback";
+ section.appendChild(feedback);
+ quiz.appendChild(section);
+});
+
+function answer(section,index,correct){
+ if(section.dataset.done==="true") return;
+ section.dataset.done="true"; answered++;
+ const buttons=section.querySelectorAll(".option");
+ const feedback=section.querySelector(".feedback");
+ buttons.forEach(b=>b.disabled=true);
+ buttons[correct].classList.add("correct");
+ if(index===correct){
+   score++;
+   feedback.textContent="✓ Correct!";
+   feedback.className="feedback correct-text";
+ }else{
+   buttons[index].classList.add("wrong");
+   feedback.textContent="✗ Incorrect — the correct answer is highlighted in green.";
+   feedback.className="feedback wrong-text";
+ }
+ updateScore();
+}
+function updateScore(){
+ const result=document.getElementById("result");
+ result.style.display="block";
+ result.innerHTML=`Score: ${score} / ${total} &nbsp; | &nbsp; Answered: ${answered} / ${total}`;
+}
+function resetQuiz(){
+ score=0; answered=0;
+ document.querySelectorAll(".question").forEach(section=>{
+   delete section.dataset.done;
+   section.querySelectorAll(".option").forEach(b=>{
+     b.disabled=false;b.classList.remove("correct","wrong");
+   });
+   const f=section.querySelector(".feedback");
+   f.textContent="";f.className="feedback";
+ });
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
